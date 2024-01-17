@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/deploy-test/static/css/main.5334ee47.css",
+    "main.css": "/deploy-test/static/css/main.26f755f5.css",
     "main.js": "/deploy-test/static/js/main.628b9d9c.js",
     "static/js/787.8f96f358.chunk.js": "/deploy-test/static/js/787.8f96f358.chunk.js",
     "static/media/mybatis.png": "/deploy-test/static/media/mybatis.88a326ca4b4b2a1a1751.png",
@@ -17,12 +17,12 @@
     "static/media/spring.png": "/deploy-test/static/media/spring.63484b2c15522d3adad2.png",
     "static/media/subversion_logo_icon_170548.png": "/deploy-test/static/media/subversion_logo_icon_170548.fa5cc62e57fcced7e964.png",
     "index.html": "/deploy-test/index.html",
-    "main.5334ee47.css.map": "/deploy-test/static/css/main.5334ee47.css.map",
+    "main.26f755f5.css.map": "/deploy-test/static/css/main.26f755f5.css.map",
     "main.628b9d9c.js.map": "/deploy-test/static/js/main.628b9d9c.js.map",
     "787.8f96f358.chunk.js.map": "/deploy-test/static/js/787.8f96f358.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.5334ee47.css",
+    "static/css/main.26f755f5.css",
     "static/js/main.628b9d9c.js"
   ]
 }
