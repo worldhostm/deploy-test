@@ -1,4 +1,4 @@
-import React,{ useEffect,useState } from 'react';
+import React,{ HtmlHTMLAttributes, useEffect,useRef,useState } from 'react';
 import './css/testCss.css';
 import phoneIcon from './img/phone.png';
 import userIcon from './img/user.png'
@@ -18,31 +18,18 @@ import java from './img/Javalogo.png';
 import spring from './img/spring.png';
 import typescript from './img/typescript.png';
 import mybatis from './img/mybatis.png';
-import rtk from './img/redux-toolkit.webp';
 import jquery from './img/jquery.png';
 import redux from './img/redux.webp';
 import git from'./img/images_jhy979_post_a42a7905-a716-40b7-9c47-c5e2035925d1GIT.png'
 import svn from'./img/subversion_logo_icon_170548.png'
-
+import menuLayout from './common/menuLayout';
 
 const AboutMe: React.FC = () => {
 
-useEffect(()=>{
-    console.log('AboutMe');
-},[]);
+const refs = [useRef<HTMLDivElement |null>(null),useRef<HTMLDivElement |null>(null),useRef<HTMLDivElement |null>(null)];
 
-const [isHovered, setIsHovered] = useState(false);
-
-const handleMouseEnter = () => {
-  setIsHovered(true);
-};
-
-const handleMouseLeave = () => {
-  setIsHovered(false);
-};
-
-const styleFlex = {
-  flex : 1
+const scrollToRef=(index:number)=>{
+  refs[index]?.current?.scrollIntoView({behavior:'smooth'});
 }
 
   const introductionData = [
@@ -158,92 +145,105 @@ const styleFlex = {
     ]}
   ]
 
-  
-
-
   return (
     <>
     <article className='highest-container'>
       <div className='highest-container-layout'>
-        <h1>Web Developer 조성민의 포트폴리오 입니다.</h1>
+        <div className='menulayout'>
+            <a key={'menulayout1'} onClick={()=>scrollToRef(0)}>소개</a>  
+            <a key={'menulayout2'} onClick={()=>scrollToRef(1)}>스킬</a>  
+            <a key={'menulayout3'} onClick={()=>scrollToRef(2)}>경험</a>  
+        </div>
+        <div className='intro_text'>
+          <h1>Web Developer 조성민의 포트폴리오 입니다.</h1>
+        </div>
       </div>
-        <div className='pageTitle'><h1>자기소개 페이지</h1></div>
+      <div className='self_introduce' >
+        <div className='pageTitle' ref={refs[0]}><h1>자기소개 페이지</h1></div>
         <div className="introduction-container">
           {introductionData?.map((item, index) => (
-            <div key={index} className="introduction-item" > 
+            <div key={'div'+item.label+index} className="introduction-item" > 
               <img src={item.icon} alt={item.label} className="icon"/>
               <div className="label">{item.label}</div>
               <div className="value" >{item.value}</div>
             </div>
           ))}
         </div>
+      </div>
     </article>
 
-    <article className='skills'>
+    <article className='skills' ref={refs[1]}>
         <div className='skill_publish'>
         <h2>publishing</h2>
           {
-            skills?.map((e=>(
+            skills?.map(((e,idx)=>(
                 e.skillcategory ==='publishing' ? 
-                  <img src={e.icon} className='img_skill'></img>
+                  <img key={'div' + e.label + idx} src={e.icon} className='img_skill'></img>
                   :
-                  <></>
+                  <div key={'div' + e.label + idx}></div>
             )))
           }
         </div>
         <div className='skill_frontend'>
           <h2>frontend</h2>
           {
-            skills?.map((e=>(
+            skills?.map(((e,idx)=>(
                  e.skillcategory ==='frontend' ? 
-                 <img src={e.icon} className='img_skill'></img> :<></>
+                  <img key={'div' +idx} src={e.icon} className='img_skill'></img> 
+                 :<div key={'div' +idx}></div>
             )))
           }
         </div>
         <div className='skill_backend'>
           <h2>backend</h2>
           {
-            skills?.map((e=>(
+            skills?.map(((e,idx)=>(
                  e.skillcategory ==='backend' ? 
-                 <img src={e.icon} className='img_skill'></img> :<></>
+                 <img key={'div' + idx} src={e.icon} className='img_skill'></img> 
+                 :<div key={'div' +idx}></div>
             )))
           }
         </div>
         <div className='source_control'>
           <h2>source controll</h2>
           {
-            skills?.map((e=>(
+            skills?.map(((e,idx)=>(
                  e.skillcategory ==='srccontrol' ? 
-                 <img src={e.icon} className='img_skill'></img> :<></>
+                 <img key={'div' + idx} src={e.icon} className='img_skill'></img> 
+                 :<div key={'div' +idx}></div>
             )))
           }
         </div>
     </article>
-    <article>
+    <article ref={refs[2]}>
       <div className='career'>
       <h1>Project</h1>
     {
-      projects.map((e)=>
-          <div className='content'>
-            <div className='content_title'>
-              <h3>{e.title}</h3>  
-                {e.customerCompany} <br/>
+      projects.map((e,idx)=>
+          <div key ={'div'+idx}className='content'>
+              <div className='content_title'>
+                {e.title}
+              </div>  
+              <div>
+                {e.customerCompany}
+              </div>   <br/>
               <div className='period'>
                 {e.employ_period}
               </div>   <br/>
-                {e.pjt_contents.split('\n').map((e,idx)=><>{e}<br/></>)}
-            </div>
+              <div className='content_desc'>
+                {e.pjt_contents.split('\n').map((e,idx)=><div key={'divsplit' + idx}>{e}<br/></div>)}
+              </div>
             <div className='spec'>
               {e.skill_spec?.map((s)=>
               s.name ==='Frontend' ? 
-                <div className='skill_block'>
+                <div key={'div' + s.name} className='skill_block'>
                   <div className='left'>
                      {s.name}
                   </div>  
                   <div className='right'> {s.content}</div>
                 </div>
                 :
-                <div className='skill_block'>
+                <div key ={'div' + s.name} className='skill_block'>
                   <div className='left'> {s.name}</div>  
                   <div className='right'> {s.content}</div>
                 </div>
