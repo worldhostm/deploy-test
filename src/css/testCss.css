@@ -25,7 +25,16 @@
         cursor: pointer;
         font-weight: 900;
     }
+    @media (max-width:600px) {
+        .menulayout{
+            font-size :15px;
+            text-align: right;
+            margin-right : 30px;
+        }
+    }
 }
+
+
 .introduction-container {
     display: flex;
     flex-wrap: wrap;

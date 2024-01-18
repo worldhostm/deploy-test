@@ -22,15 +22,15 @@ import jquery from './img/jquery.png';
 import redux from './img/redux.webp';
 import git from'./img/images_jhy979_post_a42a7905-a716-40b7-9c47-c5e2035925d1GIT.png'
 import svn from'./img/subversion_logo_icon_170548.png'
-import menuLayout from './common/menuLayout';
+import MenuLayout from './common/menuLayout';
 
 const AboutMe: React.FC = () => {
-
 const refs = [useRef<HTMLDivElement |null>(null),useRef<HTMLDivElement |null>(null),useRef<HTMLDivElement |null>(null)];
-
 const scrollToRef=(index:number)=>{
   refs[index]?.current?.scrollIntoView({behavior:'smooth'});
 }
+
+
 
   const introductionData = [
     { label: '이름', value: '조성민', icon: userIcon},
@@ -149,11 +149,7 @@ const scrollToRef=(index:number)=>{
     <>
     <article className='highest-container'>
       <div className='highest-container-layout'>
-        <div className='menulayout'>
-            <a key={'menulayout1'} onClick={()=>scrollToRef(0)}>소개</a>  
-            <a key={'menulayout2'} onClick={()=>scrollToRef(1)}>스킬</a>  
-            <a key={'menulayout3'} onClick={()=>scrollToRef(2)}>경험</a>  
-        </div>
+          <MenuLayout scrollToRef={scrollToRef}/>
         <div className='intro_text'>
           <h1>Web Developer 조성민의 포트폴리오 입니다.</h1>
         </div>
