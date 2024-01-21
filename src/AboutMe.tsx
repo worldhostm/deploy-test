@@ -36,10 +36,18 @@ const scrollToRef=(index:number)=>{
     { label: '이름', value: '조성민', icon: userIcon},
     { label: '생년월일', value: '1991-11-13', icon: birthIcon },
     { label: '경력', value: '3년 11개월', icon: careerIcon },
-    { label: '학력', value: '동국대학교 중퇴 학점은행제 학사 취득예정' , icon: academicIcon },
+    { label: '학력', value: '동국대학교 중퇴 \n 학점은행제 학사 취득예정' , icon: academicIcon },
     { label: '이메일', value: 'chos1909@gmail.com', icon: emailIcon },
     { label: '전화번호', value: '010-4093-9680', icon: phoneIcon },
   ];
+  const replaceNewlineWithBreak=(value:string)=>{
+    return value.split('\n').map((line, index, array) => (
+      <React.Fragment key={'line' + index}>
+        {line}
+        {index < array.length - 1 && <br />}
+      </React.Fragment>
+    ));
+  }
 
   const skills = [
     {label :'html5',       icon : html5,    skillcategory:'publishing'},
@@ -161,7 +169,7 @@ const scrollToRef=(index:number)=>{
             <div key={'div'+item.label+index} className="introduction-item" > 
               <img src={item.icon} alt={item.label} className="icon"/>
               <div className="label">{item.label}</div>
-              <div className="value" >{item.value}</div>
+              <div className="value">{replaceNewlineWithBreak(item.value)}</div>
             </div>
           ))}
         </div>
